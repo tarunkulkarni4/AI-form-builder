@@ -13,11 +13,9 @@ const analyzeIntent = async (req, res) => {
                 {
                     role: "system",
                     content: `You are an expert Google Forms designer. 
-Analyze the user's request and suggest 4-6 relevant sections or field groups for a form.
+Analyze the user's request and suggest 4-6 relevant sections for a form.
 Each suggestion must have: id (snake_case), title, description, and suggestedFields (array of 2-3 strings).
-Return ONLY a valid JSON array. No markdown, no explanation, just the raw JSON array.
-Example:
-[{"id":"donor_details","title":"Donor Details","description":"Collect donor information.","suggestedFields":["Full Name","Email","Phone"]}]`
+Return ONLY a valid JSON array. No markdown, no explanation.`
                 },
                 { role: "user", content: prompt }
             ],
@@ -26,12 +24,22 @@ Example:
         });
 
         const text = completion.choices[0]?.message?.content || "";
-        const jsonMatch = text.match(/\[[\s\S]*\]/);
-        if (!jsonMatch) throw new Error("Failed to parse AI response as JSON");
-        const suggestions = JSON.parse(jsonMatch[0]);
+        console.log("AI Intent Response Length:", text.length);
+
+        let suggestions = [];
+        try {
+            const startIdx = text.indexOf('[');
+            const endIdx = text.lastIndexOf(']');
+            if (startIdx === -1 || endIdx === -1) throw new Error("Missing brackets");
+            suggestions = JSON.parse(text.substring(startIdx, endIdx + 1));
+        } catch (parseErr) {
+            console.error("Intent Parse Error. Raw text:", text);
+            throw new Error("Failed to parse intent AI response");
+        }
+
         res.json(suggestions);
     } catch (error) {
-        console.error("AI Intent Analysis Error:", error.message);
+        console.error("AI Intent Analysis Error:", error);
         res.status(500).json({ message: "Failed to analyze intent", error: error.message });
     }
 };
@@ -68,8 +76,7 @@ const generateFormStructure = async (req, res) => {
 Each question: {"title":"...", "type":"short_answer|paragraph|multiple_choice|checkbox|dropdown|scale", "options":["opt1","opt2"]}
 - Use "options" only for multiple_choice, checkbox, dropdown (2-4 options each).
 - Generate exactly 2-3 questions per section.
-- Return ONLY the raw JSON array, no markdown, no explanation.
-Example: [{"title":"Your name","type":"short_answer"},{"title":"Rate experience","type":"scale"},{"title":"Choose one","type":"multiple_choice","options":["A","B","C"]}]`
+- Return ONLY the raw JSON array, no markdown, no explanation.`
                 },
                 {
                     role: "user",
@@ -81,21 +88,32 @@ Example: [{"title":"Your name","type":"short_answer"},{"title":"Rate experience"
         });
 
         const text = completion.choices[0]?.message?.content || "";
-        console.log("AI raw response:", text.substring(0, 300));
+        console.log("AI Raw Response Length:", text.length);
 
-        const jsonMatch = text.match(/\[[\s\S]*\]/);
-        if (!jsonMatch) throw new Error("AI did not return a valid JSON array");
-
-        const questions = JSON.parse(jsonMatch[0]);
+        // More robust JSON extraction
+        let questions = [];
+        try {
+            const startIdx = text.indexOf('[');
+            const endIdx = text.lastIndexOf(']');
+            if (startIdx === -1 || endIdx === -1) {
+                console.error("AI Response without brackets:", text);
+                throw new Error("AI did not return a valid JSON array (missing brackets)");
+            }
+            const jsonStr = text.substring(startIdx, endIdx + 1);
+            questions = JSON.parse(jsonStr);
+        } catch (parseErr) {
+            console.error("JSON Parse Error. Raw text:", text);
+            throw new Error("Failed to parse AI response: " + parseErr.message);
+        }
 
         // Build proper Google Forms batchUpdate requests server-side
         const requests = questions.map((q, i) => ({
             createItem: {
                 item: {
-                    title: q.title,
+                    title: q.title || "Untitled Question",
                     questionItem: {
                         question: {
-                            required: false,
+                            required: true,
                             ...buildQuestion(q.type, q.options || [])
                         }
                     }
@@ -108,8 +126,12 @@ Example: [{"title":"Your name","type":"short_answer"},{"title":"Rate experience"
         res.json({ requests });
 
     } catch (error) {
-        console.error("AI Form Structure Generation Error:", error.message);
-        res.status(500).json({ message: "Failed to generate form structure", error: error.message });
+        console.error("AI Form Structure Generation ERROR:", error);
+        res.status(500).json({
+            message: "Failed to generate form structure",
+            error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
 };
 

@@ -6,42 +6,42 @@
 ═══════════════════════════════════════════ */
 :root,
 [data-theme="dark"] {
-  --bg: #070714;
-  --bg2: #0d0d22;
+  --bg: #0a0a14;
+  --bg2: #111120;
   --surface: rgba(255, 255, 255, 0.04);
   --surface2: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(99, 102, 241, 0.5);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-glow: rgba(99, 102, 241, 0.45);
   --text: #f0f0ff;
   --text2: rgba(240, 240, 255, 0.5);
   --text3: rgba(240, 240, 255, 0.25);
   --accent: #6366f1;
   --accent2: #8b5cf6;
   --accent3: #ec4899;
-  --accent-glow: rgba(99, 102, 241, 0.25);
-  --header-bg: rgba(7, 7, 20, 0.8);
+  --accent-glow: rgba(99, 102, 241, 0.18);
+  --header-bg: rgba(10, 10, 20, 0.85);
   --card-bg: rgba(255, 255, 255, 0.03);
-  --card-hover: rgba(99, 102, 241, 0.06);
+  --card-hover: rgba(99, 102, 241, 0.05);
   --success: #10b981;
   --danger: #ef4444;
 }
 
 [data-theme="light"] {
-  --bg: #f5f5ff;
-  --bg2: #ebebff;
-  --surface: rgba(255, 255, 255, 0.7);
-  --surface2: rgba(255, 255, 255, 0.9);
-  --border: rgba(99, 102, 241, 0.15);
-  --border-glow: rgba(99, 102, 241, 0.4);
+  --bg: #f7f7ff;
+  --bg2: #ededff;
+  --surface: rgba(255, 255, 255, 0.75);
+  --surface2: rgba(255, 255, 255, 0.95);
+  --border: rgba(99, 102, 241, 0.13);
+  --border-glow: rgba(99, 102, 241, 0.38);
   --text: #1a1a3e;
   --text2: rgba(26, 26, 62, 0.55);
   --text3: rgba(26, 26, 62, 0.3);
   --accent: #4f46e5;
   --accent2: #7c3aed;
   --accent3: #db2777;
-  --accent-glow: rgba(79, 70, 229, 0.15);
-  --header-bg: rgba(245, 245, 255, 0.85);
-  --card-bg: rgba(255, 255, 255, 0.6);
+  --accent-glow: rgba(79, 70, 229, 0.12);
+  --header-bg: rgba(247, 247, 255, 0.9);
+  --card-bg: rgba(255, 255, 255, 0.65);
   --card-hover: rgba(99, 102, 241, 0.04);
   --success: #059669;
   --danger: #dc2626;
@@ -72,252 +72,17 @@ select {
 }
 
 /* ═══════════════════════════════════════════
-   KEYFRAME ANIMATIONS
-═══════════════════════════════════════════ */
-@keyframes rotate-gradient {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes float-y {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  33% {
-    transform: translateY(-14px) rotate(1deg);
-  }
-
-  66% {
-    transform: translateY(-7px) rotate(-1deg);
-  }
-}
-
-@keyframes pulse-ring {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 var(--accent-glow), 0 0 30px var(--accent-glow);
-  }
-
-  50% {
-    box-shadow: 0 0 0 12px transparent, 0 0 60px var(--accent-glow);
-  }
-}
-
-@keyframes shimmer-move {
-  0% {
-    background-position: -200% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes slide-up-in {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.93) translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes border-spin {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes particle-drift {
-  0% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: translateY(-40px) translateX(20px) scale(1.2);
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.6;
-  }
-}
-
-@keyframes counter-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes dash-in {
-  from {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-
-  to {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-}
-
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ═══════════════════════════════════════════
-   ANIMATION UTILITIES
-═══════════════════════════════════════════ */
-.anim-slide-up {
-  animation: slide-up-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.anim-fade {
-  animation: fade-in 0.6s ease both;
-}
-
-.anim-scale-in {
-  animation: scale-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.delay-100 {
-  animation-delay: 0.1s;
-}
-
-.delay-200 {
-  animation-delay: 0.2s;
-}
-
-.delay-300 {
-  animation-delay: 0.3s;
-}
-
-.delay-400 {
-  animation-delay: 0.4s;
-}
-
-.delay-500 {
-  animation-delay: 0.5s;
-}
-
-/* ═══════════════════════════════════════════
-   GRADIENT TEXT
+   GRADIENT TEXT (static — no animation)
 ═══════════════════════════════════════════ */
 .grad-text {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
-  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer-move 4s linear infinite;
 }
 
 /* ═══════════════════════════════════════════
-   IRIDESCENT GLOW RING
-═══════════════════════════════════════════ */
-.glow-ring {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  padding: 2px;
-  overflow: hidden;
-}
-
-.glow-ring::before {
-  content: '';
-  position: absolute;
-  inset: -100%;
-  width: 300%;
-  height: 300%;
-  background: conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
-  animation: rotate-gradient 3s linear infinite;
-}
-
-.glow-ring-inner {
-  position: relative;
-  z-index: 1;
-  border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ═══════════════════════════════════════════
-   GLASSMORPHIC CARDS
-═══════════════════════════════════════════ */
-.glass-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card:hover {
-  background: var(--card-hover);
-  border-color: var(--border-glow);
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.12), 0 0 0 1px var(--border-glow);
-}
-
-/* ═══════════════════════════════════════════
-   PRIMARY BUTTON
+   BUTTONS
 ═══════════════════════════════════════════ */
 .btn-primary {
   display: inline-flex;
@@ -325,46 +90,28 @@ select {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 2rem;
-  border-radius: 14px;
+  border-radius: 12px;
   font-weight: 700;
   font-size: 0.9rem;
-  letter-spacing: 0.01em;
   color: #fff;
   border: none;
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.35), 0 2px 8px rgba(99, 102, 241, 0.2);
-  transition: all 0.25s ease;
-  isolation: isolate;
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent2), var(--accent3));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  transition: opacity 0.2s ease, transform 0.15s ease;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 14px 40px rgba(99, 102, 241, 0.45);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
+  opacity: 0.92;
+  transform: translateY(-1px);
 }
 
 .btn-primary:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .btn-primary:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
   transform: none;
 }
@@ -376,24 +123,23 @@ select {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 0.85rem;
   color: var(--text);
   border: 1px solid var(--border);
   cursor: pointer;
   background: var(--surface);
-  transition: all 0.25s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .btn-ghost:hover {
   border-color: var(--border-glow);
   background: var(--surface2);
-  transform: translateY(-1px);
 }
 
 .btn-ghost:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 /* ═══════════════════════════════════════════
@@ -407,8 +153,8 @@ select {
   align-items: center;
   border-bottom: 1px solid var(--border);
   background: var(--header-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* ═══════════════════════════════════════════
@@ -422,7 +168,7 @@ select {
   background: var(--surface2);
   position: relative;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.2s ease;
 }
 
 .theme-toggle-knob {
@@ -433,8 +179,7 @@ select {
   height: 18px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.25s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -451,40 +196,36 @@ select {
 .stat-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(16px);
-  animation: counter-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(12px);
 }
 
 .stat-card:hover {
   border-color: var(--border-glow);
   background: var(--card-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
 }
 
 /* ═══════════════════════════════════════════
-   FORM CARDS (Repository)
+   FORM CARDS
 ═══════════════════════════════════════════ */
 .form-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(16px);
-  animation: scale-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
 }
 
 .form-card:hover {
   border-color: var(--border-glow);
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+  background: var(--card-hover);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.1);
 }
 
 /* ═══════════════════════════════════════════
@@ -494,12 +235,12 @@ select {
   width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 0.875rem 1rem;
   font-size: 0.95rem;
   color: var(--text);
   outline: none;
-  transition: all 0.25s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .input-field:focus {
@@ -510,27 +251,6 @@ select {
 
 .input-field::placeholder {
   color: var(--text3);
-}
-
-/* ═══════════════════════════════════════════
-   WIZARD STEP PROGRESS
-═══════════════════════════════════════════ */
-.step-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 9999px;
-  background: var(--border);
-  transition: all 0.3s ease;
-}
-
-.step-dot.active {
-  width: 28px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.step-dot.done {
-  background: var(--success);
 }
 
 /* ═══════════════════════════════════════════
@@ -554,39 +274,6 @@ select {
 }
 
 /* ═══════════════════════════════════════════
-   ANIMATED MESH BACKGROUND
-═══════════════════════════════════════════ */
-.mesh-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.mesh-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.12;
-  animation: float-y 8s ease-in-out infinite;
-}
-
-[data-theme="light"] .mesh-orb {
-  opacity: 0.06;
-}
-
-/* ═══════════════════════════════════════════
-   PARTICLE DOT
-═══════════════════════════════════════════ */
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: particle-drift ease-in-out infinite;
-}
-
-/* ═══════════════════════════════════════════
    TAG / BADGE
 ═══════════════════════════════════════════ */
 .badge {
@@ -597,31 +284,30 @@ select {
   border-radius: 99px;
   font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .badge-green {
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.1);
   color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .badge-red {
-  background: rgba(239, 68, 68, 0.12);
+  background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 .badge-blue {
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba(99, 102, 241, 0.1);
   color: var(--accent);
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 /* ═══════════════════════════════════════════
    CSS TOOLTIP
-   Usage: <elem class="tip" data-tip="text">
 ═══════════════════════════════════════════ */
 .tip {
   position: relative;
@@ -642,12 +328,12 @@ select {
   background: var(--surface2);
   color: var(--text);
   border: 1px solid var(--border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
   z-index: 100;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .tip:hover::after {
@@ -680,6 +366,6 @@ select {
 
 .nav-btn.danger:hover {
   color: #ef4444;
-  border-color: rgba(239, 68, 68, 0.35);
+  border-color: rgba(239, 68, 68, 0.3);
   background: rgba(239, 68, 68, 0.06);
 }
