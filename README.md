@@ -84,13 +84,27 @@ This application version has been polished for a **cinematic yet minimal** exper
 
 2. **Backend Setup**:
    - Navigate to `/server`
-   - Create a `.env` file based on `.env.example`
+   - Create a `.env` file and add the following keys:
+     ```env
+     PORT=5000
+     MONGODB_URI=
+     GOOGLE_CLIENT_ID=
+     GOOGLE_CLIENT_SECRET=
+     GOOGLE_CALLBACK_URL=
+     JWT_SECRET=
+     CLIENT_URL=
+     GROQ_API_KEY=
+     GEMINI_API_KEY=
+     ```
    - Install dependencies: `npm install`
    - Run server: `npm run dev`
 
 3. **Frontend Setup**:
    - Navigate to `/client`
-   - Create a `.env` file for client-side keys
+   - Create a `.env` file and add the following keys:
+     ```env
+     VITE_API_URL=http://localhost:5000/api
+     ```
    - Install dependencies: `npm install`
    - Run client: `npm run dev`
 
