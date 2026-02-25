@@ -78,7 +78,7 @@ This application version has been polished for a **cinematic yet minimal** exper
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/tarunkulkarni4/AI-form-builder
    cd ai-form-builder
    ```
 
